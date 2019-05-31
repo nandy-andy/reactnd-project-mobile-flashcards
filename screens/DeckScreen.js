@@ -28,9 +28,16 @@ export default class DeckScreen extends React.Component {
         >
           <Text>Add Card</Text>
         </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Start Quiz</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate(
+              'Quiz',
+              {
+                  questions: questions
+              }
+          )}
+        >
+          <Text>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     );
   }
