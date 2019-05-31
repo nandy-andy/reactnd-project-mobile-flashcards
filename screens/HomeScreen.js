@@ -4,10 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import { AppLoading } from 'expo';
 
 import { getDecks } from '../helpers/_DATA';
+
+import Deck from '../components/Deck';
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -35,12 +38,34 @@ export default class HomeScreen extends React.Component {
         return <AppLoading />
     }
 
+    if (decks.length === 0) {
+        return (
+          <View style={styles.container}>
+            <Text style={styles.noDecks}>
+              You haven't created any deck yet. Once you add it, it'll show up here! :-)
+            </Text>
+          </View>
+        );
+    }
+
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Text>Decks list</Text>
-            {decks.map((deck) => (<Text key={deck.title}>Deck</Text>))}
+            {decks.map((deck) => (
+                <TouchableOpacity
+                    key={deck.title}
+                    onPress={() => this.props.navigation.navigate(
+                        'Deck',
+                        {
+                            title: deck.title,
+                            questions: deck.questions
+                        }
+                    )}>
+                    <Deck title={deck.title} questions={deck.questions} />
+                </TouchableOpacity>
+            ))}
           </View>
         </ScrollView>
       </View>
@@ -60,5 +85,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
+  },
+  noDecks: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 400,
+    marginLeft: 30,
+    marginRight: 30
   }
 });
