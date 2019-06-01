@@ -50,7 +50,7 @@ export default class Quiz extends React.Component {
     };
 
     render() {
-        const { deck, questions } = this.props;
+        const { deck, questions, deckNavigationName } = this.props;
         const { currentQuestion, toggleCard } = this.state;
         const questionsCount = questions.length;
 
@@ -72,7 +72,7 @@ export default class Quiz extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate(
-                            'Deck',
+                            deckNavigationName,
                             {
                                 title: deck,
                                 questions: questions

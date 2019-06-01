@@ -30,7 +30,7 @@ export default class DeckScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate(
-              'Quiz',
+              'StartQuiz',
               {
                   deck: title,
                   questions: questions

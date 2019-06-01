@@ -17,7 +17,7 @@ export default class StartQuizScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Quiz deck={deck} questions={questions} navigation={this.props.navigation} />
+        <Quiz deck={deck} questions={questions} deckNavigationName={'Deck'} navigation={this.props.navigation} />
       </View>
     );
   }
