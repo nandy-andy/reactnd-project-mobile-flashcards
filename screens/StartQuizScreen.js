@@ -1,18 +1,24 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+
+import Quiz from '../components/Quiz';
 
 export default class StartQuizScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Quiz!',
+  static navigationOptions =  ({ navigation }) => {
+      const { deck } = navigation.state.params;
+
+      return {
+          title: deck + ' Quiz!'
+      }
   };
 
   render() {
-    const { questions } = this.props.navigation.state.params;
+    const { deck, questions } = this.props.navigation.state.params;
 
     return (
-      <ScrollView style={styles.container}>
-        <Text>{JSON.stringify(questions)}</Text>
-      </ScrollView>
+      <View style={styles.container}>
+        <Quiz deck={deck} questions={questions} navigation={this.props.navigation} />
+      </View>
     );
   }
 }

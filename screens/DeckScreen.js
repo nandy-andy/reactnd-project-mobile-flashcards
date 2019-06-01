@@ -32,6 +32,7 @@ export default class DeckScreen extends React.Component {
           onPress={() => this.props.navigation.navigate(
               'Quiz',
               {
+                  deck: title,
                   questions: questions
               }
           )}
