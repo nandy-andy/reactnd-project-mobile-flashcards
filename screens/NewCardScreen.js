@@ -9,7 +9,7 @@ export default class NewCardScreen extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Text>Create new card for "{this.props.deck}" deck</Text>
+                <Text>Create new card for "{this.props.navigation.state.params.deck}" deck</Text>
             </ScrollView>
         );
     }
