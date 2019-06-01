@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { AppLoading } from 'expo';
 
-import { getDecks } from '../helpers/_DATA';
+import { getDecks } from '../helpers/data';
 
 import Deck from '../components/Deck';
 
@@ -23,12 +23,22 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    this.setState(() => {
-      return {
-        ready: true,
-        decks: Object.values(getDecks())
-      }
-    });
+      getDecks().then((data) => {
+          try {
+              return JSON.parse(data);
+          } catch (e) {
+              return {};
+          }
+      }).then((decks) => {
+          console.log(decks);
+
+          this.setState(() => {
+              return {
+                  ready: true,
+                  decks: Object.values(decks)
+              };
+          });
+      });
   }
 
   render() {

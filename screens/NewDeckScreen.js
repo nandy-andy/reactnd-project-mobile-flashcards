@@ -1,16 +1,48 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import {
+    KeyboardAvoidingView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity
+} from 'react-native';
+
+import { saveDeckTitle } from '../helpers/data';
 
 export default class NewDeckScreen extends React.Component {
   static navigationOptions = {
-    title: 'NewDeck',
+      title: 'Add new deck',
+  };
+
+  state = {
+      title: 'Enter your deck name'
+  };
+
+  handleTitleChange = (title) => {
+      this.setState(() => {
+          return {
+              title
+          }
+      });
+  };
+
+  submit = () => {
+      saveDeckTitle(this.state.title);
+      this.props.navigation.navigate('Home');
   };
 
   render() {
+    const { title } = this.state;
+
     return (
-      <ScrollView style={styles.container}>
-        <Text>Create new deck</Text>
-      </ScrollView>
+      <KeyboardAvoidingView style={styles.container}>
+          <Text>What's the title of the new deck?</Text>
+          <TextInput
+            value={title}
+            onChangeText={this.handleTitleChange}
+          />
+          <TouchableOpacity onPress={this.submit}><Text>Create new deck</Text></TouchableOpacity>
+      </KeyboardAvoidingView>
     );
   }
 }
