@@ -88,12 +88,11 @@ class NewCardScreen extends React.Component {
     }
 }
 
-
 function mapStateToProps (state, { navigation }) {
     const { title } = navigation.state.params;
 
     return {
-        deckTitle: state[title].title
+        deckTitle: title
     }
 }
 
