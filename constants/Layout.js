@@ -43,7 +43,6 @@ export const layout = StyleSheet.create({
         width: 320,
         margin: 10,
         padding: 10,
-        backgroundColor: Colors.greenButton,
         borderRadius: 25,
         borderColor: Colors.deckBorderColor,
     }

@@ -1,27 +1,22 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux'
 
 import Quiz from '../components/Quiz';
 
+import { layout } from "../constants/Layout";
+
 class StartQuizScreen extends React.Component {
-  static navigationOptions =  ({ navigation }) => {
-      const { title } = navigation.state.params;
+    render() {
+        const { deck, questions } = this.props;
 
-      return {
-          title: title + ' Quiz!'
-      }
-  };
-
-  render() {
-    const { deck, questions } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <Quiz deck={deck} questions={questions} deckNavigationName={'Deck'} navigation={this.props.navigation} />
-      </View>
-    );
-  }
+        return (
+            <View style={layout.container}>
+                <Text style={layout.header}>Quiz: {deck}!</Text>
+                <Quiz deck={deck} questions={questions} deckNavigationName={'Deck'} navigation={this.props.navigation} />
+            </View>
+        );
+    }
 }
 
 function mapStateToProps (state, { navigation }) {
@@ -36,11 +31,3 @@ function mapStateToProps (state, { navigation }) {
 export default connect(
     mapStateToProps,
 )(StartQuizScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});

@@ -5,16 +5,9 @@ import { connect } from 'react-redux'
 import Deck from '../components/Deck';
 
 import { layout } from '../constants/Layout';
+import Colors from '../constants/Colors';
 
 class DeckScreen extends React.Component {
-  static navigationOptions =  ({ navigation }) => {
-      const { title } = navigation.state.params;
-
-      return {
-          title
-      }
-  };
-
     render() {
         const { title, questions } = this.props;
         const { navigation } = this.props;
@@ -25,7 +18,7 @@ class DeckScreen extends React.Component {
                 <View style={{alignItems: 'center'}}>
                     <Deck title={title} questions={questions} />
                     <TouchableOpacity
-                        style={layout.button}
+                        style={[layout.button, {backgroundColor: Colors.greenButton}]}
                         onPress={() => navigation.navigate(
                             'StartQuiz',
                             {
@@ -36,7 +29,7 @@ class DeckScreen extends React.Component {
                         <Text>Start Quiz</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={layout.button}
+                        style={[layout.button, {backgroundColor: Colors.greenButton}]}
                         onPress={() => navigation.navigate(
                             'NewCard',
                             {
