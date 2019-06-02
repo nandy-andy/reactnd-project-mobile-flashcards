@@ -15,7 +15,6 @@ import { receiveDecks } from '../actions';
 import Deck from '../components/Deck';
 
 import { layout } from '../constants/Layout';
-import Colors from "../constants/Colors";
 
 class HomeScreen extends React.Component {
   state = {
