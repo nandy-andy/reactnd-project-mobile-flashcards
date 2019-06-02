@@ -6,10 +6,10 @@ import Quiz from '../components/Quiz';
 
 class StartQuizScreen extends React.Component {
   static navigationOptions =  ({ navigation }) => {
-      const { deck } = navigation.state.params;
+      const { title } = navigation.state.params;
 
       return {
-          title: deck + ' Quiz!'
+          title: title + ' Quiz!'
       }
   };
 

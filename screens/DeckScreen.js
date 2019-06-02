@@ -49,7 +49,7 @@ function mapStateToProps (state, { navigation }) {
     const { title } = navigation.state.params;
 
     return {
-        title: state[title].title,
+        title,
         questions: state[title].questions
     }
 }
