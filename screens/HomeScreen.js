@@ -59,7 +59,7 @@ class HomeScreen extends React.Component {
 
     return (
         <View style={layout.container}>
-            <Text>Decks list</Text>
+            <Text style={layout.header}>Decks list</Text>
             <ScrollView style={layout.container} contentContainerStyle={layout.contentContainer}>
               <View>
                 {Object.values(decks).map((deck) => (

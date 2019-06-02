@@ -23,7 +23,7 @@ export default class App extends React.Component {
       return (
           <Provider store={createStore(reducer)}>
               <View style={styles.container}>
-                  <MobileFlashcardsStatusBar backgroundColor={Colors.background} barStyle="light-content" />
+                  <MobileFlashcardsStatusBar backgroundColor={Colors.tabBar} barStyle="light-content" />
                   <AppNavigator />
               </View>
           </Provider>

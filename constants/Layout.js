@@ -21,4 +21,13 @@ export const layout = StyleSheet.create({
     contentContainer: {
         paddingTop: 30,
     },
+    header: {
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 32,
+        backgroundColor: Colors.tabBar,
+        color: Colors.defaultTextColor,
+        flexDirection: 'row'
+    }
 });
