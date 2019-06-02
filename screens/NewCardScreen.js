@@ -6,10 +6,12 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux'
 
 import { addCardToDeck } from '../helpers/data';
+import { addCard } from '../actions';
 
-export default class NewCardScreen extends React.Component {
+class NewCardScreen extends React.Component {
     static navigationOptions = {
         title: 'Add new card',
     };
@@ -42,6 +44,7 @@ export default class NewCardScreen extends React.Component {
 
     submit = () => {
         const { question, answer } = this.state;
+        const { deckTitle, dispatch } = this.props;
 
         if (question === '' || answer === '') {
             this.setState((currentState) => {
@@ -52,16 +55,18 @@ export default class NewCardScreen extends React.Component {
                 }
             });
         } else {
-            const deckTitle = this.props.navigation.state.params.deck;
             const { question, answer } = this.state;
-            addCardToDeck(deckTitle, {question, answer});
+            const card = { question, answer };
+
+            dispatch(addCard(deckTitle, card));
+            addCardToDeck(deckTitle, card);
             this.props.navigation.navigate('Home');
         }
     };
 
     render() {
         const { question, answer, error } = this.state;
-        const deckTitle = this.props.navigation.state.params.deck;
+        const { deckTitle } = this.props;
 
         return (
             <KeyboardAvoidingView style={styles.container}>
@@ -82,6 +87,19 @@ export default class NewCardScreen extends React.Component {
         );
     }
 }
+
+
+function mapStateToProps (state, { navigation }) {
+    const { title } = navigation.state.params;
+
+    return {
+        deckTitle: state[title].title
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(NewCardScreen);
 
 const styles = StyleSheet.create({
     container: {

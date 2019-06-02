@@ -15,7 +15,13 @@ function decks (state = {}, action) {
         case ADD_CARD:
             return {
                 ...state,
-                ...action.card
+                [action.title]: {
+                    ...state[action.title],
+                    questions: [
+                        ...state[action.title].questions,
+                        action.card
+                    ]
+                }
             };
         default:
             return state;
