@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux'
 
 import Quiz from '../components/Quiz';
 
-export default class StartQuizScreen extends React.Component {
+class StartQuizScreen extends React.Component {
   static navigationOptions =  ({ navigation }) => {
       const { deck } = navigation.state.params;
 
@@ -13,7 +14,7 @@ export default class StartQuizScreen extends React.Component {
   };
 
   render() {
-    const { deck, questions } = this.props.navigation.state.params;
+    const { deck, questions } = this.props;
 
     return (
       <View style={styles.container}>
@@ -22,6 +23,19 @@ export default class StartQuizScreen extends React.Component {
     );
   }
 }
+
+function mapStateToProps (state, { navigation }) {
+    const { title } = navigation.state.params;
+
+    return {
+        deck: title,
+        questions: state[title].questions
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(StartQuizScreen);
 
 const styles = StyleSheet.create({
   container: {
