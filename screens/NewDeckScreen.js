@@ -64,9 +64,7 @@ class NewDeckScreen extends React.Component {
         return (
             <View style={layout.container}>
                 <Text style={layout.header}>Add new deck</Text>
-                <KeyboardAvoidingView style={{flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center'}}>
+                <KeyboardAvoidingView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <Text>What's the title of the new deck?</Text>
                     {error !== '' && <Text>{error}</Text>}
                     <TextInput

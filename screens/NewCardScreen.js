@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     KeyboardAvoidingView,
+    View,
     StyleSheet,
     Text,
     TextInput,
@@ -11,11 +12,10 @@ import { connect } from 'react-redux'
 import { addCardToDeck } from '../helpers/data';
 import { addCard } from '../actions';
 
-class NewCardScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Add new card',
-    };
+import { layout } from '../constants/Layout';
+import Colors from '../constants/Colors';
 
+class NewCardScreen extends React.Component {
     state = {
         question: '',
         answer: '',
@@ -69,21 +69,28 @@ class NewCardScreen extends React.Component {
         const { deckTitle } = this.props;
 
         return (
-            <KeyboardAvoidingView style={styles.container}>
-                <Text>Create new card for "{deckTitle}" deck</Text>
-                {error !== '' && <Text>{error}</Text>}
-                <Text>Question:</Text>
-                <TextInput
-                    value={question}
-                    onChangeText={this.handleQuestionChange}
-                />
-                <Text>Answer:</Text>
-                <TextInput
-                    value={answer}
-                    onChangeText={this.handleAnswerChange}
-                />
-                <TouchableOpacity onPress={this.submit}><Text>Create new card</Text></TouchableOpacity>
-            </KeyboardAvoidingView>
+            <View style={layout.container}>
+                <Text style={layout.header}>Add new card</Text>
+                <KeyboardAvoidingView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text>Create new card for "{deckTitle}" deck:</Text>
+                    {error !== '' && <Text>{error}</Text>}
+                    <TextInput
+                        value={question}
+                        onChangeText={this.handleQuestionChange}
+                        placeholder={'Type here the question...'}
+                        style={layout.input}
+                    />
+                    <TextInput
+                        value={answer}
+                        onChangeText={this.handleAnswerChange}
+                        placeholder={'Type here the answer...'}
+                        style={layout.input}
+                    />
+                    <TouchableOpacity style={[layout.button, {backgroundColor: Colors.greenButton}]} onPress={this.submit}>
+                        <Text>Create new card</Text>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
+            </View>
         );
     }
 }
@@ -99,11 +106,3 @@ function mapStateToProps (state, { navigation }) {
 export default connect(
     mapStateToProps,
 )(NewCardScreen);
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 15,
-        backgroundColor: '#fff',
-    },
-});
