@@ -10,6 +10,8 @@ import SettingsScreen from '../screens/SettingsScreen';
 import DeckScreen from '../screens/DeckScreen';
 import StartQuizScreen from '../screens/StartQuizScreen';
 
+import Colors from '../constants/Colors';
+
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Deck: DeckScreen,
@@ -63,4 +65,11 @@ export default createBottomTabNavigator({
   HomeStack,
   NewDeckStack,
   SettingsStack,
+}, {
+    tabBarOptions: {
+        activeTintColor: Colors.tintColor,
+        style: {
+            backgroundColor: Colors.tabBar
+        }
+    }
 });
