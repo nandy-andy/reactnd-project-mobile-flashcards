@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     KeyboardAvoidingView,
-    StyleSheet,
+    View,
     Text,
     TextInput,
     TouchableOpacity
@@ -11,11 +11,10 @@ import { connect } from 'react-redux'
 import { saveDeckTitle } from '../helpers/data';
 import { addDeck } from '../actions';
 
-class NewDeckScreen extends React.Component {
-  static navigationOptions = {
-      title: 'Add new deck',
-  };
+import { layout } from '../constants/Layout';
+import Colors from '../constants/Colors';
 
+class NewDeckScreen extends React.Component {
   state = {
       title: '',
       error: ''
@@ -59,30 +58,30 @@ class NewDeckScreen extends React.Component {
       }
   };
 
-  render() {
-    const { title, error } = this.state;
+    render() {
+        const { title, error } = this.state;
 
-    return (
-      <KeyboardAvoidingView style={styles.container}>
-          <Text>What's the title of the new deck?</Text>
-          {error !== '' && <Text>{error}</Text>}
-          <TextInput
-            value={title}
-            onChangeText={this.handleTitleChange}
-            placeholder={'Type here the title'}
-          />
-          <TouchableOpacity onPress={this.submit}><Text>Create new deck</Text></TouchableOpacity>
-      </KeyboardAvoidingView>
-    );
-  }
+        return (
+            <View style={layout.container}>
+                <Text style={layout.header}>Add new deck</Text>
+                <KeyboardAvoidingView style={{flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center'}}>
+                    <Text>What's the title of the new deck?</Text>
+                    {error !== '' && <Text>{error}</Text>}
+                    <TextInput
+                        value={title}
+                        onChangeText={this.handleTitleChange}
+                        placeholder={'Type here the title...'}
+                        style={layout.input}
+                    />
+                    <TouchableOpacity style={[layout.button, {backgroundColor: Colors.greenButton}]} onPress={this.submit}>
+                        <Text>Create new deck</Text>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
+            </View>
+        );
+    }
 }
 
 export default connect()(NewDeckScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});

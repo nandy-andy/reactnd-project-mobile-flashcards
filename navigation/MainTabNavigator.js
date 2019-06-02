@@ -37,6 +37,8 @@ HomeStack.navigationOptions = {
 
 const NewDeckStack = createStackNavigator({
     NewDeckStack: NewDeckScreen,
+}, {
+    headerMode: 'none'
 });
 
 NewDeckStack.navigationOptions = {

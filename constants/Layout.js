@@ -45,5 +45,13 @@ export const layout = StyleSheet.create({
         padding: 10,
         borderRadius: 25,
         borderColor: Colors.deckBorderColor,
+    },
+    input: {
+        width: 320,
+        margin: 10,
+        padding: 5,
+        borderWidth: 0.5,
+        borderColor: Colors.inactiveTintColor,
+        backgroundColor: Colors.white
     }
 });

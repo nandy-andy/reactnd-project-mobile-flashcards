@@ -1,10 +1,11 @@
 const tintColor = '#e3f2fd';
 const inactiveTintColor = '#424242';
+const white = '#fff';
 
 export default {
     background: '#e3f2fd',
     defaultTextColor: '#424242',
-    headlineColor: '#fff',
+    headlineColor: white,
     tintColor,
     inactiveTintColor,
     tabIconDefault: inactiveTintColor,
@@ -12,5 +13,6 @@ export default {
     tabBar: '#03a9f4',
     deckBorderColor: '#424242',
     redButton: '#f44e03',
-    greenButton: '#00C853'
+    greenButton: '#00C853',
+    white
 };
