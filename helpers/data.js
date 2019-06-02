@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-const MOBILE_FLASHCARDS_STORAGE_KEY = 'MobileFlashcards:data:v1.02';
+const MOBILE_FLASHCARDS_STORAGE_KEY = 'MobileFlashcards:data:v1.04';
 
 export function getDecks () {
     return AsyncStorage.getItem(MOBILE_FLASHCARDS_STORAGE_KEY)

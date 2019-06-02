@@ -47,7 +47,7 @@ class HomeScreen extends React.Component {
         return <AppLoading />
     }
 
-    if (decks.length === 0) {
+    if (Object.values(decks).length === 0) {
         return (
           <View style={layout.container}>
             <Text style={styles.noDecks}>
