@@ -51,7 +51,7 @@ class NewCardScreen extends React.Component {
                 return {
                     question: currentState.question,
                     answer: currentState.answer,
-                    error: 'Please, fill all fields before submitting'
+                    error: 'The fields cannot be empty'
                 }
             });
         } else {
@@ -73,7 +73,7 @@ class NewCardScreen extends React.Component {
                 <Text style={layout.header}>Add new card</Text>
                 <KeyboardAvoidingView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <Text>Create new card for "{deckTitle}" deck:</Text>
-                    {error !== '' && <Text>{error}</Text>}
+                    {error !== '' && <Text style={layout.errorMessage}>{error}</Text>}
                     <TextInput
                         value={question}
                         onChangeText={this.handleQuestionChange}

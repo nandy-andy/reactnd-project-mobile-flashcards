@@ -1,6 +1,7 @@
 const tintColor = '#e3f2fd';
 const inactiveTintColor = '#424242';
 const white = '#fff';
+const red = '#f00';
 
 export default {
     background: '#e3f2fd',
@@ -14,5 +15,6 @@ export default {
     deckBorderColor: '#424242',
     redButton: '#f44e03',
     greenButton: '#00C853',
-    white
+    white,
+    red
 };

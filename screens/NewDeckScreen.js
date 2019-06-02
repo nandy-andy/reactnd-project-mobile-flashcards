@@ -15,21 +15,21 @@ import { layout } from '../constants/Layout';
 import Colors from '../constants/Colors';
 
 class NewDeckScreen extends React.Component {
-  state = {
-      title: '',
-      error: ''
-  };
+    state = {
+        title: '',
+        error: ''
+    };
 
-  handleTitleChange = (title) => {
-      this.setState(() => {
-          return {
-              title,
-              error: ''
-          }
-      });
-  };
+    handleTitleChange = (title) => {
+        this.setState(() => {
+            return {
+                title,
+                error: ''
+            }
+        });
+    };
 
-  submit = () => {
+    submit = () => {
       const { title } = this.state;
       const { dispatch } = this.props;
 
@@ -56,7 +56,7 @@ class NewDeckScreen extends React.Component {
               questions: []
           });
       }
-  };
+    };
 
     render() {
         const { title, error } = this.state;
@@ -66,7 +66,7 @@ class NewDeckScreen extends React.Component {
                 <Text style={layout.header}>Add new deck</Text>
                 <KeyboardAvoidingView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <Text>What's the title of the new deck?</Text>
-                    {error !== '' && <Text>{error}</Text>}
+                    {error !== '' && <Text style={layout.errorMessage}>{error}</Text>}
                     <TextInput
                         value={title}
                         onChangeText={this.handleTitleChange}

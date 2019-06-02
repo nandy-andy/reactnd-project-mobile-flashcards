@@ -53,5 +53,13 @@ export const layout = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: Colors.inactiveTintColor,
         backgroundColor: Colors.white
+    },
+    errorMessage: {
+        borderWidth: 0.5,
+        borderColor: Colors.red,
+        backgroundColor: Colors.redButton,
+        color: Colors.white,
+        padding: 10,
+        margin: 10
     }
 });
