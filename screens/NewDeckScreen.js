@@ -44,6 +44,14 @@ class NewDeckScreen extends React.Component {
       } else {
           dispatch(addDeck(title));
           saveDeckTitle(title);
+
+          this.setState(() => {
+              return {
+                  title: '',
+                  error: ''
+              }
+          });
+
           this.props.navigation.navigate('Deck', {
               title,
               questions: []
@@ -61,6 +69,7 @@ class NewDeckScreen extends React.Component {
           <TextInput
             value={title}
             onChangeText={this.handleTitleChange}
+            placeholder={'Type here the title'}
           />
           <TouchableOpacity onPress={this.submit}><Text>Create new deck</Text></TouchableOpacity>
       </KeyboardAvoidingView>
