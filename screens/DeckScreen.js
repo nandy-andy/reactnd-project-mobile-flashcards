@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux'
 
 import Deck from '../components/Deck';
 
-export default class DeckScreen extends React.Component {
+class DeckScreen extends React.Component {
   static navigationOptions =  ({ navigation }) => {
       const { title } = navigation.state.params;
 
@@ -13,27 +14,27 @@ export default class DeckScreen extends React.Component {
   };
 
   render() {
-    const { title, questions } = this.props.navigation.state.params;
+    const { title, questions } = this.props;
+    const { navigation } = this.props;
 
     return (
       <View style={styles.container}>
         <Deck title={title} questions={questions} />
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate(
+          onPress={() => navigation.navigate(
               'NewCard',
               {
-                  deck: title
+                  title: title
               }
           )}
         >
           <Text>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate(
+          onPress={() => navigation.navigate(
               'StartQuiz',
               {
-                  deck: title,
-                  questions: questions
+                  title: title
               }
           )}
         >
@@ -43,6 +44,19 @@ export default class DeckScreen extends React.Component {
     );
   }
 }
+
+function mapStateToProps (state, { navigation }) {
+    const { title } = navigation.state.params;
+
+    return {
+        title: state[title].title,
+        questions: state[title].questions
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(DeckScreen);
 
 const styles = StyleSheet.create({
   container: {
