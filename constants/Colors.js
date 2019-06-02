@@ -11,4 +11,6 @@ export default {
     tabIconSelected: tintColor,
     tabBar: '#03a9f4',
     deckBorderColor: '#424242',
+    redButton: '#f44e03',
+    greenButton: '#00C853'
 };

@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import Deck from '../components/Deck';
 
+import { layout } from '../constants/Layout';
+
 class DeckScreen extends React.Component {
   static navigationOptions =  ({ navigation }) => {
       const { title } = navigation.state.params;
@@ -13,35 +15,40 @@ class DeckScreen extends React.Component {
       }
   };
 
-  render() {
-    const { title, questions } = this.props;
-    const { navigation } = this.props;
+    render() {
+        const { title, questions } = this.props;
+        const { navigation } = this.props;
 
-    return (
-      <View style={styles.container}>
-        <Deck title={title} questions={questions} />
-        <TouchableOpacity
-          onPress={() => navigation.navigate(
-              'NewCard',
-              {
-                  title: title
-              }
-          )}
-        >
-          <Text>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(
-              'StartQuiz',
-              {
-                  title: title
-              }
-          )}
-        >
-          <Text>Start Quiz</Text>
-        </TouchableOpacity>
-      </View>
-    );
+        return (
+            <View style={[layout.container]}>
+                <Text style={layout.header}>{title}</Text>
+                <View style={{alignItems: 'center'}}>
+                    <Deck title={title} questions={questions} />
+                    <TouchableOpacity
+                        style={layout.button}
+                        onPress={() => navigation.navigate(
+                            'StartQuiz',
+                            {
+                              title: title
+                            }
+                        )}
+                    >
+                        <Text>Start Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={layout.button}
+                        onPress={() => navigation.navigate(
+                            'NewCard',
+                            {
+                              title: title
+                            }
+                        )}
+                    >
+                        <Text>Add Card</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
   }
 }
 
@@ -57,11 +64,3 @@ function mapStateToProps (state, { navigation }) {
 export default connect(
     mapStateToProps,
 )(DeckScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});

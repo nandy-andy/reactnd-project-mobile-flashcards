@@ -64,7 +64,7 @@ class HomeScreen extends React.Component {
             <ScrollView style={layout.container} contentContainerStyle={layout.contentContainer}>
                 {Object.values(decks).map((deck) => (
                     <TouchableOpacity
-                        style={styles.deck}
+                        style={layout.deck}
                         key={deck.title}
                         onPress={() => this.props.navigation.navigate(
                             'Deck',
@@ -72,7 +72,7 @@ class HomeScreen extends React.Component {
                                 title: deck.title
                             }
                         )}>
-                        <Deck title={deck.title} questions={deck.questions} />
+                        <Deck title={deck.title} questions={deck.questions} homeScreen={true} />
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -92,16 +92,6 @@ export default connect(
 )(HomeScreen);
 
 const styles = StyleSheet.create({
-    deck: {
-        flex: 1,
-        width: 320,
-        height: 50,
-        margin: 10,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: Colors.deckBorderColor,
-        alignItems: 'flex-start'
-    },
     noDecks: {
         alignItems: 'center',
         justifyContent: 'center',

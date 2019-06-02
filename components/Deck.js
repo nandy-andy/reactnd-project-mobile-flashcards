@@ -1,13 +1,23 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Colors from "../constants/Colors";
+
+import { layout } from '../constants/Layout';
 
 class Deck extends React.Component {
     render() {
-        const { title, questions } = this.props;
+        const { title, questions, homeScreen } = this.props;
+
+        if (homeScreen) {
+            return (
+                <View style={layout.container}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.info}>Contains {questions.length} cards</Text>
+                </View>
+            );
+        }
 
         return (
-            <View>
+            <View style={layout.deck}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.info}>Contains {questions.length} cards</Text>
             </View>

@@ -17,6 +17,8 @@ const HomeStack = createStackNavigator({
   Deck: DeckScreen,
   NewCard: NewCardScreen,
   StartQuiz: StartQuizScreen,
+}, {
+    headerMode: 'none'
 });
 
 HomeStack.navigationOptions = {
