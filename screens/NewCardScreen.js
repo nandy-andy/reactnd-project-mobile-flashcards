@@ -24,7 +24,8 @@ export default class NewCardScreen extends React.Component {
         this.setState((currentState) => {
             return {
                 question,
-                answer: currentState.answer
+                answer: currentState.answer,
+                error: ''
             }
         });
     };
@@ -33,7 +34,8 @@ export default class NewCardScreen extends React.Component {
         this.setState((currentState) => {
             return {
                 question: currentState.question,
-                answer
+                answer,
+                error: ''
             }
         });
     };
@@ -63,8 +65,8 @@ export default class NewCardScreen extends React.Component {
 
         return (
             <KeyboardAvoidingView style={styles.container}>
-                {error !== '' && <Text>{error}</Text>}
                 <Text>Create new card for "{deckTitle}" deck</Text>
+                {error !== '' && <Text>{error}</Text>}
                 <Text>Question:</Text>
                 <TextInput
                     value={question}

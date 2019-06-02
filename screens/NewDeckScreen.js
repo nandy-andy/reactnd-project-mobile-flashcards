@@ -15,28 +15,45 @@ export default class NewDeckScreen extends React.Component {
   };
 
   state = {
-      title: 'Enter your deck name'
+      title: '',
+      error: ''
   };
 
   handleTitleChange = (title) => {
       this.setState(() => {
           return {
-              title
+              title,
+              error: ''
           }
       });
   };
 
   submit = () => {
-      saveDeckTitle(this.state.title);
-      this.props.navigation.navigate('Home');
+      const { title } = this.state;
+
+      if (title === '') {
+          this.setState(() => {
+              return {
+                  title,
+                  error: 'The title cannot be empty'
+              }
+          });
+      } else {
+          saveDeckTitle(title);
+          this.props.navigation.navigate('Deck', {
+              title,
+              questions: []
+          });
+      }
   };
 
   render() {
-    const { title } = this.state;
+    const { title, error } = this.state;
 
     return (
       <KeyboardAvoidingView style={styles.container}>
           <Text>What's the title of the new deck?</Text>
+          {error !== '' && <Text>{error}</Text>}
           <TextInput
             value={title}
             onChangeText={this.handleTitleChange}
