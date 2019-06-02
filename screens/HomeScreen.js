@@ -14,6 +14,8 @@ import { receiveDecks } from '../actions';
 
 import Deck from '../components/Deck';
 
+import { layout } from '../constants/Layout';
+
 class HomeScreen extends React.Component {
   state = {
     ready: false,
@@ -47,7 +49,7 @@ class HomeScreen extends React.Component {
 
     if (decks.length === 0) {
         return (
-          <View style={styles.container}>
+          <View style={layout.container}>
             <Text style={styles.noDecks}>
               You haven't created any deck yet. Once you add it, it'll show up here! :-)
             </Text>
@@ -56,24 +58,24 @@ class HomeScreen extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
+        <View style={layout.container}>
             <Text>Decks list</Text>
-            {Object.values(decks).map((deck) => (
-                <TouchableOpacity
-                    key={deck.title}
-                    onPress={() => this.props.navigation.navigate(
-                        'Deck',
-                        {
-                            title: deck.title
-                        }
-                    )}>
-                    <Deck title={deck.title} questions={deck.questions} />
-                </TouchableOpacity>
-            ))}
-          </View>
-        </ScrollView>
+            <ScrollView style={layout.container} contentContainerStyle={layout.contentContainer}>
+              <View>
+                {Object.values(decks).map((deck) => (
+                    <TouchableOpacity
+                        key={deck.title}
+                        onPress={() => this.props.navigation.navigate(
+                            'Deck',
+                            {
+                                title: deck.title
+                            }
+                        )}>
+                        <Deck title={deck.title} questions={deck.questions} />
+                    </TouchableOpacity>
+                ))}
+              </View>
+            </ScrollView>
       </View>
     );
   }
@@ -90,18 +92,6 @@ export default connect(
 )(HomeScreen);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
   noDecks: {
     alignItems: 'center',
     justifyContent: 'center',
