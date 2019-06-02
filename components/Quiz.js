@@ -6,7 +6,7 @@ import { clearLocalNotification, setLocalNotificationForTomorrow } from '../help
 import { layout } from '../constants/Layout';
 import Colors from "../constants/Colors";
 
-export default class Quiz extends React.Component {
+class Quiz extends React.Component {
     state = {
         currentQuestion: 0,
         correct: 0,
@@ -85,7 +85,7 @@ export default class Quiz extends React.Component {
 
         return (
             <View style={styles.questionCard}>
-                <Text style={style.textResults}>
+                <Text style={styles.textResults}>
                     {correct > 0
                         ? 'Congratulations!'
                         : "No luck this time... Don't give up, try again!"
@@ -173,3 +173,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
+
+export default Quiz;
