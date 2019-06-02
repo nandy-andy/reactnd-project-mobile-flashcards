@@ -15,6 +15,7 @@ import { receiveDecks } from '../actions';
 import Deck from '../components/Deck';
 
 import { layout } from '../constants/Layout';
+import Colors from "../constants/Colors";
 
 class HomeScreen extends React.Component {
   state = {
@@ -61,9 +62,9 @@ class HomeScreen extends React.Component {
         <View style={layout.container}>
             <Text style={layout.header}>Decks list</Text>
             <ScrollView style={layout.container} contentContainerStyle={layout.contentContainer}>
-              <View>
                 {Object.values(decks).map((deck) => (
                     <TouchableOpacity
+                        style={styles.deck}
                         key={deck.title}
                         onPress={() => this.props.navigation.navigate(
                             'Deck',
@@ -74,7 +75,6 @@ class HomeScreen extends React.Component {
                         <Deck title={deck.title} questions={deck.questions} />
                     </TouchableOpacity>
                 ))}
-              </View>
             </ScrollView>
       </View>
     );
@@ -92,12 +92,22 @@ export default connect(
 )(HomeScreen);
 
 const styles = StyleSheet.create({
-  noDecks: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 400,
-    marginLeft: 30,
-    marginRight: 30
-  }
+    deck: {
+        flex: 1,
+        width: 320,
+        height: 50,
+        margin: 10,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: Colors.deckBorderColor,
+        alignItems: 'flex-start'
+    },
+    noDecks: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: 400,
+        marginLeft: 30,
+        marginRight: 30
+    }
 });

@@ -12,14 +12,14 @@ export const global = {
   isSmallDevice: width < 375,
 };
 
-
 export const layout = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.background
+        backgroundColor: Colors.background,
     },
     contentContainer: {
-        paddingTop: 30,
+        padding: 10,
+        alignItems: 'center'
     },
     header: {
         padding: 10,
@@ -27,7 +27,7 @@ export const layout = StyleSheet.create({
         alignItems: 'center',
         fontSize: 32,
         backgroundColor: Colors.tabBar,
-        color: Colors.defaultTextColor,
+        color: Colors.headlineColor,
         flexDirection: 'row'
     }
 });
