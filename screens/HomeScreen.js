@@ -30,8 +30,6 @@ export default class HomeScreen extends React.Component {
               return {};
           }
       }).then((decks) => {
-          console.log(decks);
-
           this.setState(() => {
               return {
                   ready: true,
