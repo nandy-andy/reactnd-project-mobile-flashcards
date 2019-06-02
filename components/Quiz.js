@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
+import { clearLocalNotification, setLocalNotificationForTomorrow } from '../helpers/notifications';
+
 export default class Quiz extends React.Component {
     state = {
         currentQuestion: 0,
@@ -63,9 +65,17 @@ export default class Quiz extends React.Component {
         }
 
         if (currentQuestion >= questionsCount) {
+            clearLocalNotification()
+                .then(setLocalNotificationForTomorrow);
+
             return (
                 <View style={styles.container}>
-                    <Text>{this.state.correct > 0 ? 'Congratulations!' : 'No luck this time...'}</Text>
+                    <Text>
+                        {this.state.correct > 0
+                            ? 'Congratulations!'
+                            : "No luck this time... Don't give up, try again!"
+                        }
+                    </Text>
                     <Text>You answered {this.state.correct} out of {questionsCount} correctly!</Text>
                     <TouchableOpacity onPress={this.restart}>
                         <Text>Restart Quiz</Text>
