@@ -6,10 +6,12 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux'
 
 import { saveDeckTitle } from '../helpers/data';
+import { addDeck } from '../actions';
 
-export default class NewDeckScreen extends React.Component {
+class NewDeckScreen extends React.Component {
   static navigationOptions = {
       title: 'Add new deck',
   };
@@ -30,6 +32,7 @@ export default class NewDeckScreen extends React.Component {
 
   submit = () => {
       const { title } = this.state;
+      const { dispatch } = this.props;
 
       if (title === '') {
           this.setState(() => {
@@ -39,6 +42,7 @@ export default class NewDeckScreen extends React.Component {
               }
           });
       } else {
+          dispatch(addDeck(title));
           saveDeckTitle(title);
           this.props.navigation.navigate('Deck', {
               title,
@@ -63,6 +67,8 @@ export default class NewDeckScreen extends React.Component {
     );
   }
 }
+
+export default connect()(NewDeckScreen);
 
 const styles = StyleSheet.create({
   container: {
