@@ -6,15 +6,16 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux'
 import { AppLoading } from 'expo';
 
 import { getDecks } from '../helpers/data';
+import { receiveDecks } from '../actions';
 
 import Deck from '../components/Deck';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   state = {
-    decks: {},
     ready: false,
   };
 
@@ -23,6 +24,8 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
+      const { dispatch } = this.props;
+
       getDecks().then((data) => {
           try {
               return JSON.parse(data);
@@ -30,17 +33,13 @@ export default class HomeScreen extends React.Component {
               return {};
           }
       }).then((decks) => {
-          this.setState(() => {
-              return {
-                  ready: true,
-                  decks: Object.values(decks)
-              };
-          });
-      });
+          dispatch(receiveDecks(decks))
+      }).then(() => this.setState(() => ({ready: true})))
   }
 
   render() {
-    const { decks, ready } = this.state;
+    const { decks } = this.props;
+    const { ready } = this.state;
 
     if (ready === false) {
         return <AppLoading />
@@ -61,14 +60,13 @@ export default class HomeScreen extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Text>Decks list</Text>
-            {decks.map((deck) => (
+            {Object.values(decks).map((deck) => (
                 <TouchableOpacity
                     key={deck.title}
                     onPress={() => this.props.navigation.navigate(
                         'Deck',
                         {
-                            title: deck.title,
-                            questions: deck.questions
+                            title: deck.title
                         }
                     )}>
                     <Deck title={deck.title} questions={deck.questions} />
@@ -80,6 +78,16 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+function mapStateToProps (decks) {
+    return {
+        decks
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
