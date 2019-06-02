@@ -1,7 +1,8 @@
-const tintColor = '#fefefe';
-const inactiveTintColor = '#8e8e93';
+const tintColor = '#e3f2fd';
+const inactiveTintColor = '#424242';
 
 export default {
+  background: '#e3f2fd',
   tintColor,
   inactiveTintColor,
   tabIconDefault: inactiveTintColor,

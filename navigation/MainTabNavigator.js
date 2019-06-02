@@ -68,6 +68,7 @@ export default createBottomTabNavigator({
 }, {
     tabBarOptions: {
         activeTintColor: Colors.tintColor,
+        inactiveTintColor: Colors.inactiveTintColor,
         style: {
             backgroundColor: Colors.tabBar
         }
