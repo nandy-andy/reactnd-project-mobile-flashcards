@@ -30,32 +30,45 @@ class NewDeckScreen extends React.Component {
     };
 
     submit = () => {
-      const { title } = this.state;
-      const { dispatch } = this.props;
+        const { title } = this.state;
+        const { dispatch, decks } = this.props;
 
-      if (title === '') {
+        if (title === '') {
           this.setState(() => {
               return {
                   title,
                   error: 'The title cannot be empty'
               }
           });
-      } else {
-          dispatch(addDeck(title));
-          saveDeckTitle(title);
 
-          this.setState(() => {
-              return {
-                  title: '',
-                  error: ''
-              }
-          });
+          return;
+        }
 
-          this.props.navigation.navigate('Deck', {
-              title,
-              questions: []
-          });
-      }
+        if (decks[title]) {
+            this.setState(() => {
+                return {
+                    title,
+                    error: 'There is already a deck with this title'
+                }
+            });
+
+            return;
+        }
+
+        dispatch(addDeck(title));
+        saveDeckTitle(title);
+
+        this.setState(() => {
+            return {
+                title: '',
+                error: ''
+            }
+        });
+
+        this.props.navigation.navigate('Deck', {
+            title,
+            questions: []
+        });
     };
 
     render() {
@@ -82,4 +95,10 @@ class NewDeckScreen extends React.Component {
     }
 }
 
-export default connect()(NewDeckScreen);
+function mapStateToProps (decks) {
+    return {
+        decks
+    }
+}
+
+export default connect(mapStateToProps)(NewDeckScreen);
