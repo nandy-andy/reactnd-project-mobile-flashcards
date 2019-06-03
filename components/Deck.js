@@ -3,27 +3,33 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import { layout } from '../constants/Layout';
 
-class Deck extends React.Component {
-    render() {
-        const { title, questions, homeScreen } = this.props;
-
-        if (homeScreen) {
-            return (
-                <View style={layout.container}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.info}>Contains {questions.length} cards</Text>
-                </View>
-            );
-        }
-
+export const Deck = ({ title, questions, homeScreen }) => {
+    if (homeScreen) {
         return (
-            <View style={layout.deck}>
+            <View style={layout.container}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.info}>Contains {questions.length} cards</Text>
+                <Text style={styles.info}>
+                    {questions.length === 1
+                        ? `${questions.length} Card`
+                        : `${questions.length} Cards`
+                    }
+                </Text>
             </View>
         );
     }
-}
+
+    return (
+        <View style={layout.deck}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.info}>
+                {questions.length === 1
+                    ? `${questions.length} Card`
+                    : `${questions.length} Cards`
+                }
+            </Text>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     title: {
