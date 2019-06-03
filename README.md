@@ -9,6 +9,9 @@ This is nAndy's project made out of the starter template of `create-react-native
 * start the development server with `yarn start`
 * follow instructions on the screen for example hit `i` to open iOs simulator and use the app
 
+## Warning
+⚠️ Application was tested on iOS Simulator (iPhone XR, iOS 12.2).
+
 ## Contributing
 
 This repository is a one-time code created to finish Udacity course. Therefore, I most likely will not accept pull requests. Feel free to use it as inspiration, though ;-)
